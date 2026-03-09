@@ -1,9 +1,9 @@
 # Resume Builder (Vercel Ready)
 
 ## Routes
-- `/` -> Admin resume builder
-- `/admin` -> Admin resume builder
+- `/` -> Public resume showcase (landing page)
 - `/showcase` -> Public resume showcase
+- `/admin` -> Admin resume builder
 
 ## API Endpoints
 - `GET /api/resumes`

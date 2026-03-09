@@ -21,7 +21,7 @@
     },
     {
       "source": "/",
-      "destination": "/public/index.html"
+      "destination": "/public/public_resume_showcase.html"
     },
     {
       "source": "/admin",
@@ -29,6 +29,14 @@
     },
     {
       "source": "/showcase",
+      "destination": "/public/public_resume_showcase.html"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/public/public_resume_showcase.html"
+    },
+    {
+      "source": "/public/index.html",
       "destination": "/public/public_resume_showcase.html"
     }
   ]
