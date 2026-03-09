@@ -1,50 +1,6 @@
-// const API_BASE_URL = "http://localhost:3000";
-
-async function loadLatestResume() {
-    try {
-        const res = await fetch(`${API_BASE_URL}/api/resumes`);
-        const data = await res.json();
-
-        const ids = Object.keys(data);
-
-        if (ids.length === 0) {
-            console.log("No resumes found");
-            return;
-        }
-
-        const latestId = ids[ids.length - 1];
-        const resume = data[latestId];
-
-        populateResume(resume);
-
-    } catch (err) {
-        console.error("Error:", err);
-    }
-}
-
-function populateResume(resume) {
-
-    // PERSONAL INFO
-    document.querySelector("[data-field='fullName']").innerText =
-        resume.personalInfo?.fullName || "";
-
-    document.querySelector("[data-field='email']").innerText =
-        resume.personalInfo?.email || "";
-
-    document.querySelector("[data-field='phone']").innerText =
-        resume.personalInfo?.phone || "";
-
-    document.querySelector("[data-field='city']").innerText =
-        resume.personalInfo?.city || "";
-
-    document.querySelector("[data-field='summary']").innerText =
-        resume.personalInfo?.summary || "";
-
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     // --- Globals & State ---
-    const API_BASE_URL = 'http://localhost:3000'; // Changed from 'http://localhost:3000/api'
+    const API_BASE_URL = window.location.origin;
     let allResumes = []; // Stores all fetched resumes
     let currentlyExpandedCard = null; // Tracks the currently expanded resume card
     let originalCardDetailsContent = {}; // Store original HTML content for each card ID
@@ -516,46 +472,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterAndDisplayDebounced = debounce(filterAndDisplay, 300); // 300ms delay
 
 
-   const fetchAllData = async () => {
-    setLoading(true);
+    const fetchAllData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/resumes`);
+            if (!response.ok) throw new Error(`Failed to fetch resumes (${response.status})`);
+            const data = await response.json();
+            allResumes = Object.values(data || {});
+            filterAndDisplay();
+        } catch (error) {
+            console.error("Error fetching resumes:", error);
+            showMessage(`Error fetching resumes: ${error.message}`, 'danger');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    try {
+    const fetchMetadata = async (type) => {
+        const response = await fetch(`${API_BASE_URL}/api/metadata/${type}`);
+        if (!response.ok) throw new Error(`Failed to fetch ${type}`);
+        return response.json();
+    };
 
-        const response = await fetch("db.json");
-        const data = await response.json();
+    const populateFilters = async () => {
+        try {
+            const [skills, tags, degrees] = await Promise.all([
+                fetchMetadata('skills'),
+                fetchMetadata('tags'),
+                fetchMetadata('degrees')
+            ]);
 
-        // object ko array me convert karna
-        allResumes = Object.values(data);
+            const skillSelect = document.getElementById('searchBySkill');
+            skillSelect.innerHTML = '<option value="">All Skills</option>';
+            skillSelect.innerHTML += skills.map(s => `<option value="${s}">${s}</option>`).join('');
 
-        filterAndDisplay();
+            const tagSelect = document.getElementById('searchByTag');
+            tagSelect.innerHTML = '<option value="">All Tags</option>';
+            tagSelect.innerHTML += tags.map(t => `<option value="${t}">${t}</option>`).join('');
 
-    } catch (error) {
-
-        console.error("Error fetching resumes:", error);
-        showMessage(`Error fetching resumes: ${error.message}`, 'danger');
-
-    } finally {
-        setLoading(false);
-    }
-};
-   const populateFilters = async () => {
-
-    const skills = ["HTML","CSS","JavaScript","Python","React","AI"];
-    const tags = ["Developer","Student","Designer","Engineer","Manager"];
-    const degrees = ["BCA","BTech","MBA","BDes","PhD","MS"];
-
-    const skillSelect = document.getElementById('searchBySkill');
-    skillSelect.innerHTML = '<option value="">All Skills</option>';
-    skillSelect.innerHTML += skills.map(s => `<option value="${s}">${s}</option>`).join('');
-
-    const tagSelect = document.getElementById('searchByTag');
-    tagSelect.innerHTML = '<option value="">All Tags</option>';
-    tagSelect.innerHTML += tags.map(t => `<option value="${t}">${t}</option>`).join('');
-
-    const degreeSelect = document.getElementById('searchByDegree');
-    degreeSelect.innerHTML = '<option value="">All Degrees</option>';
-    degreeSelect.innerHTML += degrees.map(d => `<option value="${d}">${d}</option>`).join('');
-};
+            const degreeSelect = document.getElementById('searchByDegree');
+            degreeSelect.innerHTML = '<option value="">All Degrees</option>';
+            degreeSelect.innerHTML += degrees.map(d => `<option value="${d}">${d}</option>`).join('');
+        } catch (error) {
+            console.error("Error fetching filter metadata:", error);
+            showMessage(`Metadata load failed: ${error.message}`, 'warning');
+        }
+    };
 
     // --- Event Listeners ---
     searchBtn.addEventListener('click', filterAndDisplay);

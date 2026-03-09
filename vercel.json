@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/public_resume_showcase.html",
+      "destination": "/public/public_resume_showcase.html"
+    },
+    {
+      "source": "/admin_resume_builder.js",
+      "destination": "/public/admin_resume_builder.js"
+    },
+    {
+      "source": "/resume_showcase.js",
+      "destination": "/public/resume_showcase.js"
+    },
+    {
+      "source": "/2nd.jpg",
+      "destination": "/public/2nd.jpg"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/showcase",
+      "destination": "/public/public_resume_showcase.html"
+    }
+  ]
+}
