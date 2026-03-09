@@ -2,670 +2,803 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume Builder - Right Shift Solution</title>
-  <!-- Bootstrap & Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <!-- Google Fonts: Inter for iOS feel -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Cropper.js for image editing -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
-  <!-- Highlight.js for JSON syntax highlighting -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Talent - Right Shift Solution</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Adjust card background to be more transparent for glass effect */
+            /* CHANGED: Reduced opacity to 0.1 for a clearer, less 'milky' glass effect */
+            --card-bg: rgba(255, 255, 255, 0.1);
+            /* More transparent white */
+            --text-color: #ffffff;
+            /* White text for better contrast on background image */
+            --secondary-text-color: #e0e0e0;
+            /* Lighter secondary text */
+            /* CHANGED: Reverted Primary color to Blue */
+            --primary-color: #007aff;
+            --border-color: rgba(255, 255, 255, 0.3);
+            /* Lighter border for glass effect */
+            --shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            /* Slightly stronger shadow */
+            --backdrop-blur-amount: blur(15px);
+            /* Increased blur for stronger glass effect */
+        }
 
-  <style>
-    :root {
-      --bg-color: #f0f2f5;
-      --card-bg: rgba(255, 255, 255, 0.85);
-      --text-color: #1d1d1f;
-      --secondary-text-color: #6e6e73;
-      /* CHANGED: Primary color to Purple */
-      --primary-color: #6f42c1;
-      --border-color: #d2d2d7;
-      --input-bg: #f5f5f7;
-      --hover-color: #e5e5ea;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --backdrop-blur: blur(10px);
-    }
+        body {
+            /* Remove video background styles and add image background styles */
+            background-image: url('2nd.jpg');
+            /* Placeholder image for now */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            /* Apply global text color for readability */
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    body {
-      background-color: var(--bg-color);
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-color);
-      padding: 20px;
-    }
+        /* Overlay for better text readability over dynamic backgrounds */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Slightly darker overlay for better contrast */
+            z-index: -99;
+        }
 
-    .main-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      max-width: 1600px;
-      margin: 0 auto;
-    }
+        /* Video background element and its styles are removed */
 
-    .form-column,
-    .preview-column {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-    .card-section {
-      background: var(--card-bg);
-      backdrop-filter: var(--backdrop-blur);
-      -webkit-backdrop-filter: var(--backdrop-blur);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow: var(--shadow);
-    }
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-    /* --- Header Layout --- */
-    .header-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      /* Allows wrapping on small screens */
-      gap: 15px;
-    }
+        .header-section .company-name {
+            /* Enhanced styling for the company name */
+            font-size: 1.8rem;
+            /* Larger font size */
+            font-weight: 700;
+            /* Bolder */
+            color: var(--primary-color);
+            /* Keep primary color, but now more prominent */
+            margin-bottom: 0.8rem;
+            /* More space below it */
+            letter-spacing: 0.1em;
+            /* Add some letter spacing */
+            text-transform: uppercase;
+            /* Make it uppercase for a more distinct look */
+            /* Updated shadow color to match Blue */
+            text-shadow: 0 0 10px rgba(0, 122, 255, 0.7),
+                /* Subtle glow effect */
+                0 0 20px rgba(0, 122, 255, 0.4);
+            transition: all 0.3s ease-in-out;
+            /* Smooth transition for potential hover effects */
+            text-decoration: none;
+            /* No underline */
+            display: inline-block;
+            /* Allow transform */
+        }
 
-    .header-section h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-color);
-      margin: 0;
-      text-align: center;
-      flex-grow: 1;
-      /* Allows title to take available space */
-    }
+        .header-section .company-name:hover {
+            transform: scale(1.02);
+            /* Slight scale on hover */
+            color: #fff;
+            /* White on hover for contrast */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                /* Brighter glow on hover */
+                0 0 25px rgba(255, 255, 255, 0.5);
+        }
 
-    .company-logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--primary-color);
-      flex-shrink: 0;
-      /* Prevents logo from shrinking too much */
-      text-decoration: none;
-      /* Remove underline for link */
-      transition: opacity 0.2s ease;
-    }
+        .header-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
 
-    .company-logo:hover {
-      opacity: 0.8;
-      color: var(--primary-color);
-    }
+        .search-filters-section {
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+        }
 
-    /* --- Public Showcase Button Styles (Robust Version) --- */
-    .public-showcase-btn {
-      background-color: #fff;
-      border: 1px solid var(--border-color);
-      color: var(--primary-color);
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: var(--shadow);
-      white-space: nowrap;
-      /* Prevents button text from wrapping weirdly */
-      flex-shrink: 0;
-      /* Prevents button from getting squished */
-    }
+        .form-control,
+        .form-select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
 
-    .public-showcase-btn:hover {
-      background-color: var(--primary-color);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(111, 66, 193, 0.25);
-      /* Updated shadow color */
-    }
+        .form-control::placeholder,
+        .form-select option {
+            color: var(--secondary-text-color);
+        }
 
-    @media (max-width: 768px) {
-
-      /* On mobile, stack them nicely */
-      .header-section {
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .header-section h1 {
-        order: 2;
-        /* Title second */
-        margin: 10px 0;
-      }
-
-      .company-logo {
-        order: 1;
-        /* Logo first */
-      }
-
-      .public-showcase-btn {
-        order: 3;
-        /* Button last */
-        width: 100%;
-        /* Full width button on mobile */
-        justify-content: center;
-      }
-    }
-
-    .form-control,
-    .form-select {
-      background-color: var(--input-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 10px 15px;
-      color: var(--text-color);
-      transition: all 0.2s ease;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-      background-color: #fff;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.2);
-      /* Updated shadow color */
-    }
-
-    .btn {
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-
-    .btn-primary:hover {
-      opacity: 0.85;
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-
-    .btn-outline-secondary {
-      border-color: var(--border-color);
-      color: var(--secondary-text-color);
-    }
-
-    .btn-outline-secondary:hover {
-      background-color: var(--hover-color);
-      border-color: var(--border-color);
-      color: var(--text-color);
-    }
-
-    .collapsible-section summary {
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      list-style: none;
-    }
-
-    .collapsible-section summary::after {
-      content: '\F282';
-      /* Bootstrap icon chevron down */
-      font-family: 'bootstrap-icons';
-      transition: transform 0.2s ease;
-    }
-
-    .collapsible-section[open]>summary::after {
-      content: '\F286';
-      /* Bootstrap icon chevron up */
-      transform: rotate(180deg);
-    }
-
-    .collapsible-section .content {
-      padding-top: 15px;
-    }
-
-    /* Image Editor Styles */
-    .image-editor-container {
-      width: 100%;
-      height: 400px;
-      background-color: var(--input-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 15px;
-    }
-
-    .image-editor-container img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .image-controls {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(5px);
-      padding: 8px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .image-controls .btn {
-      padding: 5px 10px;
-      font-size: 0.9rem;
-    }
-
-    /* JSON Viewer */
-    .json-output-section pre {
-      background-color: var(--input-bg);
-      border-radius: 12px;
-      padding: 15px;
-      max-height: 500px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .json-output-section code.json {
-      font-size: 0.9rem;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    #jsonOutput,
-    #jsonOutput.hljs {
-      display: block;
-      white-space: pre-wrap !important;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(240, 242, 245, 0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1050;
-    }
-
-    /* MODIFIED: Ensure app-message is visible when 'show' class is present */
-    .app-message {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 300px;
-      z-index: 1100;
-      display: none;
-      /* Hidden by default */
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    }
-
-    .app-message.show {
-      display: block;
-      /* Make it block when 'show' is added */
-      opacity: 1;
-      visibility: visible;
-    }
+        .form-select option {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
 
 
-    /* Styles for the new tag/skill dropdowns */
-    .tag-input-container {
-      position: relative;
-    }
+        .form-control:focus,
+        .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 122, 255, 0.25);
+            /* Blue shadow */
+            color: var(--text-color);
+        }
 
-    /* Custom Autocomplete Dropdown */
-    .custom-autocomplete-dropdown {
-      position: absolute;
-      background-color: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      max-height: 150px;
-      /* Small size for dropdown */
-      overflow-y: auto;
-      z-index: 1000;
-      width: calc(100% - 2px);
-      /* Match input width */
-      box-shadow: var(--shadow);
-      margin-top: 5px;
-      display: none;
-      /* Hidden by default */
-    }
-
-    .custom-autocomplete-dropdown.show {
-      display: block;
-    }
-
-    .custom-autocomplete-dropdown .dropdown-item {
-      padding: 8px 15px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      color: var(--text-color);
-    }
-
-    .custom-autocomplete-dropdown .dropdown-item:hover,
-    .custom-autocomplete-dropdown .dropdown-item.active {
-      background-color: var(--hover-color);
-      color: var(--primary-color);
-    }
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        }
 
 
-    .selected-container {
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 5px;
-      min-height: 40px;
-      background-color: var(--input-bg);
-    }
+        #searchResultsContainer {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            /* Removed align-items: stretch to allow dynamic height */
+        }
 
-    .selected-container .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.4em 0.6em;
-      margin: 0.2em;
-      border-radius: 8px;
-    }
+        @media (min-width: 768px) {
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
 
-    .selected-container .badge .btn-close {
-      margin-left: 0.5em;
-      font-size: 0.5em;
-    }
+        @media (min-width: 1200px) {
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+        }
 
-    /* New style for skill badge to accommodate rating input */
-    .selected-skill-badge {
-      display: inline-flex;
-      align-items: center;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.4em 0.6em;
-      margin: 0.2em;
-      border-radius: 8px;
-    }
+        @media (min-width: 1140px) and (max-width: 1199.98px) {
+            #searchResultsContainer {
+                gap: 20px;
+            }
 
-    .selected-skill-badge .skill-rating-input {
-      width: 50px;
-      /* Adjust width as needed */
-      margin-left: 8px;
-      padding: 2px 5px;
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      text-align: center;
-    }
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
 
-    .selected-skill-badge .skill-rating-input:focus {
-      background-color: rgba(255, 255, 255, 0.4);
-      border-color: white;
-      outline: none;
-    }
+            .resume-card .card-summary {
+                padding: 20px;
+                gap: 16px;
+            }
 
-    .input-group.is-invalid .form-control,
-    .input-group.is-invalid .input-group-text,
-    .input-group.is-invalid .form-select {
-      border-color: var(--bs-form-invalid-border-color) !important;
-    }
+            .search-filters-section .row {
+                row-gap: 12px;
+            }
+        }
 
-    .input-group.is-invalid:focus-within .form-control,
-    .input-group.is-invalid:focus-within .input-group-text,
-    .input-group.is-invalid:focus-within .form-select {
-      box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-    }
+        #searchResultsContainer.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        #searchResultsContainer.list-view .resume-card {
+            flex-direction: row;
+            text-align: left;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            /* height will be dynamic based on content */
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-summary {
+            flex-direction: row;
+            text-align: left;
+            align-items: center;
+            gap: 20px;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        #searchResultsContainer.list-view .resume-card .profile-photo {
+            width: 60px;
+            height: 60px;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: auto;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .name {
+            font-size: 1.3rem;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .qualification {
+            font-size: 0.9rem;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .rating {
+            justify-content: flex-start;
+            margin-top: 5px;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .skills,
+        #searchResultsContainer.list-view .resume-card .card-info .tags {
+            display: none;
+        }
+
+        .resume-card {
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            /* Removed fixed height, cards will now auto-adjust */
+            overflow: visible;
+            /* Ensure content is not clipped */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+            display: flex;
+            /* Maintain flex for internal layout */
+            flex-direction: column;
+            /* Stack content vertically */
+        }
+
+        .resume-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .resume-card.expanded {
+            grid-column: 1 / -1;
+            /* Makes the expanded card span all columns */
+            height: auto;
+            /* Allow expanded card to take full height to show details */
+            overflow: visible;
+            /* Allow content to be fully visible when expanded */
+        }
 
 
-    @media (max-width: 1200px) {
-      .main-container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .resume-card .card-summary {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            /* Removed flex-grow: 1; */
+            justify-content: flex-start;
+            overflow: visible;
+            /* Ensure content is not clipped or scrolled */
+            /* Removed flex-shrink: 0 and max-height: 100% */
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-summary {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+
+        .resume-card .profile-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .resume-card .card-info {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-info {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+            }
+
+            .resume-card .card-info .name,
+            .resume-card .card-info .qualification {
+                grid-column: 1 / 3;
+            }
+        }
+
+        .resume-card .card-info .name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .resume-card .card-info .qualification {
+            color: var(--secondary-text-color);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .resume-card .card-info .rating {
+            margin-top: 0;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-info .rating {
+                justify-content: flex-start;
+            }
+        }
+
+        .resume-card .card-info .rating i {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+
+        .resume-card.expanded .card-details .text-muted,
+        .resume-card .card-summary .rating .text-muted {
+            color: #ADD8E6 !important;
+        }
+
+        /* --- Updated Link Styling for Visibility (Yellow, No Underline) --- */
+        .resume-card .card-details a,
+        .resume-card .card-details .text-muted {
+            /* CHANGED: Yellow for high contrast on dark glass */
+            color: #ffeb3b !important;
+            text-decoration: none !important;
+            /* No underline */
+            font-size: 1.25rem;
+            /* Bigger text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .resume-card .card-details a:hover {
+            color: #fff176 !important;
+            /* Lighter yellow on hover */
+        }
+
+
+        .resume-card .card-info .skills .badge.skill-badge-with-rating,
+        .resume-card .card-details .row .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 0.4em 0.6em;
+            margin: 0.2em;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .resume-card .card-info .skills .badge.skill-badge-with-rating i,
+        .resume-card .card-details .row .badge i {
+            font-size: 0.8em;
+            color: #FFD700;
+            line-height: 1;
+        }
+
+
+        .resume-card .card-info .tags .badge {
+            font-size: 0.85rem;
+            background-color: rgba(0, 122, 255, 0.3);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+        }
+
+
+        .resume-card .card-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            /* Added background to prevent grey flash */
+            /* CHANGED: Reverted to simple glass background (removed solid white) */
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            /* Adjusted transition for a snappier feel from 0.5s to 0.2s */
+            transition: max-height 0.2s ease-out, opacity 0.2s ease-out, padding 0.2s ease-out;
+            color: var(--text-color);
+        }
+
+        .resume-card.expanded .card-details {
+            max-height: 1000px;
+            /* Adjust if content can be taller */
+            opacity: 1;
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .full-image-view {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .app-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 300px;
+            z-index: 1100;
+            /* Ensure this is high */
+            display: none;
+            opacity: 0;
+            /* Hidden by default for smooth transition */
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .app-message.show {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1050;
+        }
+
+        .loading-overlay .spinner-border {
+            color: var(--primary-color) !important;
+        }
+
+        /* --- Responsive adjustments for search filters --- */
+        .search-filters-section .row {
+            align-items: center;
+            /* Align items vertically in the center */
+        }
+
+        .search-filters-section .row>div {
+            margin-bottom: 10px;
+            /* Add some vertical spacing for stacking */
+        }
+
+        @media (min-width: 768px) {
+            .search-filters-section .row>div {
+                margin-bottom: 0;
+                /* Remove vertical spacing on medium and larger screens */
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023.98px) {
+            .header-section h1 {
+                font-size: 2.4rem;
+            }
+
+            .search-filters-section {
+                padding: 20px;
+            }
+
+            .search-filters-section .row {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .search-filters-section .row .col-12.col-md-auto {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 0;
+            }
+
+            .search-filters-section .row .btn {
+                width: 100%;
+            }
+
+            .search-filters-section .d-flex.flex-column.flex-md-row {
+                flex-wrap: wrap;
+                justify-content: space-between !important;
+                gap: 12px !important;
+            }
+
+            #searchResultsContainer {
+                gap: 18px;
+            }
+
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .resume-card .card-summary {
+                padding: 18px;
+                gap: 12px;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .resume-card .card-info {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-card .card-info .name,
+            .resume-card .card-info .qualification {
+                grid-column: auto;
+            }
+
+            .resume-card .card-info .rating {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+
+            /* For small screens, ensure inputs stack well */
+            .search-filters-section .row .col-12.col-md-auto {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .search-filters-section .row .btn {
+                width: 100%;
+            }
+
+            .search-filters-section .d-flex.flex-column.flex-md-row {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+
+            .search-filters-section .d-flex.align-items-center.gap-2 {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .switch-button-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        .switch-button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .switch-button {
+            position: relative;
+            display: inline-block;
+            width: 90px;
+            height: 34px;
+        }
+
+        .switch-button input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(56px);
+            -ms-transform: translateX(56px);
+            transform: translateX(56px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .view-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+            padding: 0 5px;
+        }
+
+        .view-label.active-view {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Custom styles for the 'All' button - Enhanced */
+        #showAllBtn {
+            background-color: #007bff;
+            /* Bootstrap primary blue */
+            border-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+            /* Soft shadow */
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #showAllBtn:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            /* Slight lift */
+            box-shadow: 0 6px 10px rgba(0, 123, 255, 0.4);
+            /* Enhanced shadow */
+        }
+
+        #showAllBtn i {
+            margin-right: 5px;
+            /* Space for icon if added */
+        }
+
+        /* Custom styles for the 'Clear' button */
+        #clearBtn {
+            background-color: #ffc107;
+            /* Yellow/Orange background */
+            border-color: #ffc107;
+            /* Yellow/Orange border */
+            color: #343a40;
+            /* Dark text for contrast */
+        }
+
+        #clearBtn:hover {
+            background-color: #e0a800;
+            /* Darker yellow/orange on hover */
+            border-color: #d39e00;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="header-section">
-    <!-- CHANGED: Link added for Right Shift Solution -->
-    <a href="https://www.rightshiftsolutions.com" target="_blank" class="company-logo">Right Shift Solution</a>
-    <h1>Resume Builder</h1>
-    <!-- Public Showcase Button Moved Inside Header -->
-    <a href="/showcase" class="public-showcase-btn">
-      <i class="bi bi-globe"></i> <span>See Your Resume</span>
-    </a>
-  </div>
+    <!-- NO Admin Button Here as requested -->
 
-  <div class="app-message alert alert-info text-center" role="alert" id="appMessage">
-    <span id="appMessageText"></span>
-  </div>
-
-  <div class="main-container">
-    <!-- FORM COLUMN -->
-    <div class="form-column">
-      <div class="card-section">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Load resume by ID" id="loadResumeIdInput" />
-          <button class="btn btn-outline-secondary" type="button" id="loadResumeByIdBtn">Load</button>
+    <div class="main-container">
+        <div class="header-section">
+            <!-- CHANGED: Link added for Right Shift Solution -->
+            <a href="https://www.rightshiftsolutions.com" target="_blank" class="company-name">Parishkar College</a>
+            <h1>Top Talent</h1>
         </div>
-      </div>
 
-      <form id="resumeForm" class="card-section">
-        <datalist id="allDegreesList"></datalist>
+        <div id="appMessage" class="app-message alert alert-danger text-center" role="alert"></div>
 
-        <!-- Personal Info -->
-        <details class="collapsible-section" open>
-          <summary>Personal Information</summary>
-          <div class="content row g-3">
-            <div class="col-md-6">
-              <label for="fullName" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="fullName" placeholder="e.g., John Doe" required>
-              <div class="invalid-feedback" id="fullName-feedback"></div>
+        <div class="search-filters-section">
+            <div class="row g-3">
+                <!-- Inputs and selects now use col-12 for full width on extra small to small screens
+                     and col-md-auto for automatic sizing on medium and larger screens.
+                     This makes them stack vertically on small screens and align horizontally on larger ones. -->
+                <div class="col-12 col-md-auto"><input type="text" class="form-control" id="searchByName"
+                        placeholder="Search by Name..."></div>
+                <div class="col-12 col-md-auto"><input type="text" class="form-control" id="searchByCity"
+                        placeholder="Search by City..."></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchBySkill">
+                        <option value="">All Skills</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchByTag">
+                        <option value="">All Tags</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchByDegree">
+                        <option value="">All Degrees</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><button class="btn btn-primary w-100" id="searchBtn">Filter</button>
+                </div>
+                <div class="col-12 col-md-auto"><button class="btn btn-outline-secondary w-100"
+                        id="clearBtn">Clear</button></div>
             </div>
-            <div class="col-md-6">
-              <label for="emailPrefix" class="form-label">Email</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="emailPrefix" placeholder="e.g., johndoe" required />
-                <select class="form-select" id="emailDomainSelect"></select>
-                <div class="invalid-feedback" id="email-feedback"></div>
-              </div>
+            <hr class="my-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <div id="resultsCountDisplay" class="text-muted"></div>
+                <div class="d-flex align-items-center gap-2">
+                    <span>Show:</span>
+                    <input type="number" class="form-control form-control-sm" id="limitInput" min="1" max="300"
+                        value="9" style="width: 80px;">
+                    <button class="btn btn-sm" id="showAllBtn"><i class="bi bi-infinity"></i> All</button>
+                </div>
+                <div class="switch-button-container">
+                    <span id="cardsViewLabel" class="view-label active-view">Cards View</span>
+                    <label class="switch-button">
+                        <input type="checkbox" id="viewToggleSwitch" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="listViewLabel" class="view-label">List View</span>
+                </div>
             </div>
-            <div class="col-md-6 tag-input-container">
-              <label for="countryAndCode" class="form-label">Country & Phone Code</label>
-              <input type="text" class="form-control" id="countryAndCode" placeholder="Select or type country (+code)"
-                required />
-              <div id="countryAndCodeSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
-              <div class="invalid-feedback" id="countryAndCode-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="phone" class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" id="phone" placeholder="e.g., 9876543210" inputmode="numeric"
-                pattern="[0-9]*" />
-              <div class="invalid-feedback" id="phone-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="rating" class="form-label">Rating (0.0 - 5.0)</label>
-              <input type="number" class="form-control" id="rating" step="0.1" min="0" max="5" placeholder="e.g., 4.5"
-                required inputmode="numeric" pattern="[0-9]*[.]?[0-9]*" />
-              <div class="invalid-feedback" id="rating-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="linkedin" class="form-label">LinkedIn URL</label>
-              <input type="url" class="form-control" id="linkedin" placeholder="https://linkedin.com/in/johndoe" />
-              <div class="invalid-feedback" id="linkedin-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="github" class="form-label">GitHub URL</label>
-              <input type="url" class="form-control" id="github" placeholder="https://github.com/johndoe" />
-              <div class="invalid-feedback" id="github-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="youtube" class="form-label">YouTube URL</label>
-              <input type="url" class="form-control" id="youtube" placeholder="https://youtube.com/user/johndoe" />
-              <div class="invalid-feedback" id="youtube-feedback"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="city" class="form-label">City</label>
-              <input type="text" class="form-control" id="city" placeholder="e.g., New York" required />
-              <div class="invalid-feedback" id="city-feedback"></div>
-            </div>
-            <div class="col-12">
-              <label for="summary" class="form-label">Summary</label>
-              <textarea class="form-control" id="summary" rows="3" maxlength="500"
-                placeholder="A brief professional summary..."></textarea>
-            </div>
-          </div>
-        </details>
+        </div>
 
-        <!-- Other sections... -->
-        <hr class="my-4">
-        <details class="collapsible-section">
-          <summary>Education</summary>
-          <div class="content">
-            <div id="educationContainer"></div>
-            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addEducation"><i
-                class="bi bi-plus"></i> Add Education</button>
-          </div>
-        </details>
+        <div id="searchResultsContainer" class="cards-view">
+            <!-- Resume cards will be injected here -->
+        </div>
 
-        <hr class="my-4">
-        <details class="collapsible-section">
-          <summary>Experience</summary>
-          <div class="content">
-            <div id="experienceContainer"></div>
-            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addExperience"><i
-                class="bi bi-plus"></i> Add Experience</button>
-          </div>
-        </details>
-
-        <hr class="my-4">
-        <details class="collapsible-section">
-          <summary>Projects</summary>
-          <div class="content">
-            <div id="projectsContainer"></div>
-            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addProject"><i
-                class="bi bi-plus"></i> Add Project</button>
-          </div>
-        </details>
-
-        <hr class="my-4">
-        <details class="collapsible-section" open>
-          <summary>Skills & Tags</summary>
-          <div class="content row g-3">
-            <div class="col-md-6 tag-input-container">
-              <label for="skillSearchInput" class="form-label">Skills</label>
-              <input type="text" class="form-control" id="skillSearchInput" placeholder="Type or select skills..." />
-              <div id="skillSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
-              <div class="invalid-feedback" id="skillSearchInput-feedback"></div>
-              <div class="selected-container mt-2" id="selectedSkillsContainer">
-                <!-- Skills with ratings will be injected here -->
-              </div>
-            </div>
-            <div class="col-md-6 tag-input-container">
-              <label for="tagSearchInput" class="form-label">Tags</label>
-              <input type="text" class="form-control" id="tagSearchInput" placeholder="Type or select tags..." />
-              <div id="tagSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
-              <div class="invalid-feedback" id="tagSearchInput-feedback"></div>
-              <div class="selected-container mt-2" id="selectedTagsContainer"></div>
-            </div>
-          </div>
-        </details>
-        <!-- Dynamic section fields for Education, Experience, and Projects also get inputmode="numeric" and pattern="[0-9]*" -->
-        <datalist id="allDegreesList"></datalist>
-      </form>
+        <div class="text-center p-4 text-muted" id="initialMessage">Use filters to find talent.</div>
     </div>
 
-    <!-- PREVIEW & IMAGE COLUMN -->
-    <div class="preview-column">
-      <!-- Image Editor -->
-      <div class="card-section">
-        <details class="collapsible-section" open>
-          <summary>Profile Photo</summary>
-          <div class="content position-relative">
-            <div class="image-editor-container">
-              <img id="image-editor-target" src="https://placehold.co/800x400/f5f5f7/6e6e73?text=Upload+Image"
-                alt="Profile image editor">
-            </div>
-            <div class="image-controls">
-              <label for="profilePictureInput" class="btn btn-light"><i class="bi bi-upload"></i></label>
-              <input type="file" id="profilePictureInput" accept="image/*" class="d-none">
-              <button class="btn btn-light" id="crop-square-btn" title="Crop Square"><i
-                  class="bi bi-square"></i></button>
-              <button class="btn btn-light" id="zoom-in-btn" title="Zoom In"><i class="bi bi-zoom-in"></i></button>
-              <button class="btn btn-light" id="zoom-out-btn" title="Zoom Out"><i class="bi bi-zoom-out"></i></button>
-              <button class="btn btn-light" id="zoom-reset-btn" title="Reset Zoom"><i class="bi bi-search"></i></button>
-              <button class="btn btn-danger" id="remove-image-btn" title="Remove Image"><i
-                  class="bi bi-trash"></i></button>
-            </div>
-          </div>
-        </details>
-      </div>
-
-      <!-- JSON Viewer -->
-      <div class="card-section">
-        <details class="collapsible-section" open>
-          <summary>Live JSON Output</summary>
-          <div class="content json-output-section">
-            <pre><code id="jsonOutput" class="json">{ "message": "Form data will appear here live." }</code></pre>
-          </div>
-        </details>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="card-section d-flex justify-content-end gap-2">
-        <button class="btn btn-outline-secondary" type="button" id="clearFormBtn">New</button>
-        <button class="btn btn-danger" type="button" id="deleteResumeBtn">Delete</button>
-        <button class="btn btn-primary" type="button" id="saveResumeBtn">Save/Update Resume</button>
-      </div>
+    <div class="loading-overlay" id="loadingIndicator">
+        <div class="spinner-border text-primary" role="status"></div>
     </div>
-  </div>
 
-  <div class="loading-overlay" id="loadingIndicator">
-    <div class="spinner-border text-primary" role="status"></div>
-  </div>
-
-  <!-- Custom Confirmation Modal -->
-  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">\
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="confirmationModalLabel">Confirm Action</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="confirmationModalBody">
-          Are you sure you want to proceed?\
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="confirmActionBtn">Confirm</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
-  <script src="admin_resume_builder.js"></script>
+    <!-- jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="resume_showcase.js"></script>
 </body>
 
 </html>

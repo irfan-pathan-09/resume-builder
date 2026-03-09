@@ -4,10 +4,6 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/public_resume_showcase.html",
-      "destination": "/public/public_resume_showcase.html"
-    },
-    {
       "source": "/admin_resume_builder.js",
       "destination": "/public/admin_resume_builder.js"
     },
@@ -21,23 +17,27 @@
     },
     {
       "source": "/",
-      "destination": "/public/public_resume_showcase.html"
-    },
-    {
-      "source": "/admin",
       "destination": "/public/index.html"
     },
     {
+      "source": "/admin",
+      "destination": "/public/admin.html"
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/public/admin.html"
+    },
+    {
       "source": "/showcase",
-      "destination": "/public/public_resume_showcase.html"
+      "destination": "/public/index.html"
     },
     {
       "source": "/index.html",
-      "destination": "/public/public_resume_showcase.html"
+      "destination": "/public/index.html"
     },
     {
       "source": "/public/index.html",
-      "destination": "/public/public_resume_showcase.html"
+      "destination": "/public/index.html"
     }
   ]
 }
