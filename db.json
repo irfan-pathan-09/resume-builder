@@ -1,0 +1,931 @@
+{
+  "1": {
+    "personalInfo": {
+      "fullName": "Himanshu Jangid",
+      "email": "himanshu123@gmail.com",
+      "countryCode": "+91",
+      "phone": "8989898989",
+      "linkedin": "https://www.linkedin.com/in/himanshu-jangid",
+      "github": "https://github.com/ora-club",
+      "country": "India",
+      "city": "Jaipur",
+      "summary": "Hi guys, I'm a BCA student and I made this website.",
+      "rating": 5,
+      "profilePhotoOriginalUrl": "/images/1-original.jpeg",
+      "profilePhotoCroppedUrl": "/images/1-cropped.jpeg",
+      "youtube": "https://www.youtube.com/watch?v=sicPymobMcA&list=RDsicPymobMcA&start_radio=1"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Computer Applications (BCA)",
+        "institution": "Parishkar College",
+        "startYear": "2023",
+        "endYear": "2026"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Intern",
+        "company": "RIGHT SHIFT SOLUTIONS",
+        "startDate": "2025-08-01",
+        "endDate": "",
+        "description": "I'm intern at this company and I am doing good and I built a resume builder which is best in class builder with a wide range of features and robust config."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "Resume Builder Application",
+        "projectUrl": "https://github.com/ora-club/resume-builder",
+        "description": "Developed a feature-rich resume builder with user-friendly interface and robust backend."
+      }
+    ],
+    "skills": [
+      {
+        "name": "HTML",
+        "rating": 5
+      },
+      {
+        "name": "CSS",
+        "rating": 5
+      },
+      {
+        "name": "JavaScript",
+        "rating": 4
+      },
+      {
+        "name": "Python",
+        "rating": 3
+      }
+    ],
+    "tags": [
+      "Administrator",
+      "Developer",
+      "Student"
+    ],
+    "id": "1"
+  },
+  "2": {
+    "personalInfo": {
+      "fullName": "Aman Sharma",
+      "email": "aman@gmail.com",
+      "countryCode": "+91",
+      "phone": "9876543210",
+      "linkedin": "https://linkedin.com/in/aman",
+      "github": "https://github.com/aman",
+      "country": "India",
+      "city": "Delhi",
+      "summary": "A passionate web developer with experience in modern frameworks and technologies.",
+      "rating": 4.5,
+      "profilePhotoOriginalUrl": "/images/2-original.jpg",
+      "profilePhotoCroppedUrl": "/images/2-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology (BTech)",
+        "institution": "Delhi University",
+        "startYear": "2019",
+        "endYear": "2023"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Junior Developer",
+        "company": "Innovate Labs",
+        "startDate": "2023-09-01",
+        "endDate": "",
+        "description": "Developed and maintained web applications using React and Node.js. Collaborated with senior developers on various projects."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "E-commerce Platform",
+        "projectUrl": "https://ecommerce.com",
+        "description": "Built a full-stack e-commerce site with user authentication, product catalog, and payment integration."
+      }
+    ],
+    "skills": [
+      {
+        "name": "Agile",
+        "rating": 3
+      },
+      {
+        "name": "Leadership",
+        "rating": 3
+      },
+      {
+        "name": "Networking",
+        "rating": 4
+      },
+      {
+        "name": "PHP",
+        "rating": 2
+      }
+    ],
+    "tags": [
+      "Developer",
+      "Engineer",
+      "Leader"
+    ],
+    "id": "2"
+  },
+  "3": {
+    "personalInfo": {
+      "fullName": "Priya Singh",
+      "email": "priya@gmail.com",
+      "countryCode": "+91",
+      "phone": "9988776655",
+      "linkedin": "https://linkedin.com/in/priya-singh-pm",
+      "github": "",
+      "country": "India",
+      "city": "Mumbai",
+      "summary": "Experienced Project Manager with a strong background in agile methodologies and team leadership.",
+      "rating": 4.6,
+      "profilePhotoOriginalUrl": "/images/3-original.jpg",
+      "profilePhotoCroppedUrl": "/images/3-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Master of Business Administration (MBA)",
+        "institution": "IIM Bangalore",
+        "startYear": "2018",
+        "endYear": "2020"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Project Manager",
+        "company": "Global Solutions",
+        "startDate": "2020-07-01",
+        "endDate": "",
+        "description": "Led cross-functional teams to deliver complex software projects on time and within budget. Implemented agile practices."
+      }
+    ],
+    "projects": [],
+    "skills": [
+      {
+        "name": "Networking",
+        "rating": 3
+      },
+      {
+        "name": "React",
+        "rating": 4
+      },
+      {
+        "name": "ROS",
+        "rating": 4
+      },
+      {
+        "name": "C++",
+        "rating": 3
+      }
+    ],
+    "tags": [
+      "Manager",
+      "Leader"
+    ],
+    "id": "3"
+  },
+  "4": {
+    "personalInfo": {
+      "fullName": "Rajesh Kumar",
+      "email": "rajesh@gmail.com",
+      "countryCode": "+1",
+      "phone": "1234567890",
+      "linkedin": "https://linkedin.com/in/rajesh-kumar-se",
+      "github": "https://github.com/rajesh-se",
+      "country": "USA",
+      "city": "San Francisco",
+      "summary": "Software Engineer with expertise in backend systems and cloud technologies. Passionate about building scalable and robust applications.",
+      "rating": 4.6,
+      "profilePhotoOriginalUrl": "/images/4-original.jpg",
+      "profilePhotoCroppedUrl": "/images/4-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Master of Science (MS) Computer Science",
+        "institution": "Stanford University",
+        "startYear": "2018",
+        "endYear": "2020"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Software Engineer",
+        "company": "InnovateX",
+        "startDate": "2020-08-15",
+        "endDate": "",
+        "description": "Designed and implemented scalable backend services using Java, Spring Boot, and AWS. Optimized database queries."
+      }
+    ],
+    "projects": [],
+    "skills": [
+      {
+        "name": "Content Strategy",
+        "rating": 2
+      },
+      {
+        "name": "html",
+        "rating": 4
+      }
+    ],
+    "tags": [
+      "Developer",
+      "Cloud",
+      "Engineer"
+    ],
+    "id": "4"
+  },
+  "5": {
+    "personalInfo": {
+      "fullName": "Anjali Sharma",
+      "email": "anjali@gmail.com",
+      "countryCode": "+91",
+      "phone": "9123456789",
+      "linkedin": "https://linkedin.com/in/anjali-data-sci",
+      "github": "https://github.com/anjali-ds",
+      "country": "India",
+      "city": "Bangalore",
+      "summary": "Data Scientist passionate about machine learning and data visualization. Skilled in Python and statistical modeling.",
+      "rating": 4.7,
+      "profilePhotoOriginalUrl": "/images/5-original.jpg",
+      "profilePhotoCroppedUrl": "/images/5-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Master of Science (MS) Data Science",
+        "institution": "IIT Bombay",
+        "startYear": "2019",
+        "endYear": "2021"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Data Scientist",
+        "company": "Data Insights Co.",
+        "startDate": "2021-06-01",
+        "endDate": "",
+        "description": "Developed predictive models and created interactive dashboards using Python and Tableau. Analyzed large datasets."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "Sentiment Analysis Tool",
+        "projectUrl": "https://github.com/anjali-ds/sentiment-tool",
+        "description": "A Python-based tool for analyzing social media sentiment from various platforms."
+      }
+    ],
+    "skills": [
+      {
+        "name": "AI",
+        "rating": 4
+      },
+      {
+        "name": "html",
+        "rating": 5
+      },
+      {
+        "name": "css",
+        "rating": 4
+      },
+      {
+        "name": "SQL",
+        "rating": 3
+      }
+    ],
+    "tags": [
+      "Analyst",
+      "AI",
+      "Data Science"
+    ],
+    "id": "5"
+  },
+  "6": {
+    "personalInfo": {
+      "fullName": "Vikram Singh",
+      "email": "vikram@hotmail.com",
+      "countryCode": "+44",
+      "phone": "7890123456",
+      "linkedin": "https://linkedin.com/in/vikram-uiux",
+      "github": "https://github.com/vikram-design",
+      "country": "UK",
+      "city": "London",
+      "summary": "Creative UI/UX Designer focused on user-centered design principles and creating intuitive experiences.",
+      "rating": 4.2,
+      "profilePhotoOriginalUrl": "/images/6-original.jpg",
+      "profilePhotoCroppedUrl": "/images/6-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Design (BDes)",
+        "institution": "University of the Arts London",
+        "startYear": "2017",
+        "endYear": "2021"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "UI/UX Designer",
+        "company": "Creative Solutions",
+        "startDate": "2021-09-01",
+        "endDate": "",
+        "description": "Designed intuitive user interfaces for mobile and web applications. Conducted user research and usability testing."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "Mobile App Redesign",
+        "projectUrl": "https://behance.net/vikram-design",
+        "description": "Led the redesign of a popular e-commerce mobile application, improving user engagement by 20%."
+      }
+    ],
+    "skills": [
+      {
+        "name": "HTML",
+        "rating": 3
+      },
+      {
+        "name": "Networking",
+        "rating": 4
+      },
+      {
+        "name": "Microsoft Office",
+        "rating": 4
+      }
+    ],
+    "tags": [
+      "Designer",
+      "UI/UX"
+    ],
+    "id": "6"
+  },
+  "7": {
+    "personalInfo": {
+      "fullName": "Sofia Rodriguez",
+      "email": "sofia@icloud.com",
+      "countryCode": "+33",
+      "phone": "612345678",
+      "linkedin": "https://linkedin.com/in/sofia-marketing",
+      "github": "",
+      "country": "France",
+      "city": "Paris",
+      "summary": "Digital Marketing Specialist with experience in SEO, SEM, and social media campaigns. Driven by measurable results.",
+      "rating": 3.9,
+      "profilePhotoOriginalUrl": "/images/7-original.jpg",
+      "profilePhotoCroppedUrl": "/images/7-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Master of Arts (MA) Marketing",
+        "institution": "Sorbonne University",
+        "startYear": "2019",
+        "endYear": "2021"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Digital Marketing Specialist",
+        "company": "Brand Boosters",
+        "startDate": "2021-08-01",
+        "endDate": "",
+        "description": "Managed and optimized digital marketing campaigns for various clients, achieving significant ROI improvements."
+      }
+    ],
+    "projects": [],
+    "skills": [
+      {
+        "name": "Google Analytics",
+        "rating": 4
+      },
+      {
+        "name": "HTML",
+        "rating": 3
+      },
+      {
+        "name": "Java",
+        "rating": 5
+      },
+      {
+        "name": "Microsoft Office",
+        "rating": 4
+      },
+      {
+        "name": "Node.js",
+        "rating": 4
+      }
+    ],
+    "tags": [
+      "Marketing",
+      "Analyst"
+    ],
+    "id": "7"
+  },
+  "8": {
+    "personalInfo": {
+      "fullName": "Hiroshi Tanaka",
+      "email": "hiroshi@outlook.com",
+      "countryCode": "+81",
+      "phone": "8012345678",
+      "linkedin": "https://linkedin.com/in/hiroshi-robotics",
+      "github": "https://github.com/hiroshi-robotics",
+      "country": "Japan",
+      "city": "Tokyo",
+      "summary": "Robotics Engineer with a focus on AI and automation. Passionate about developing intelligent systems.",
+      "rating": 4.9,
+      "profilePhotoOriginalUrl": "/images/8-original.jpg",
+      "profilePhotoCroppedUrl": "/images/8-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Doctor of Philosophy (PhD) Robotics",
+        "institution": "University of Tokyo",
+        "startYear": "2016",
+        "endYear": "2022"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Robotics Engineer",
+        "company": "Future Systems Inc.",
+        "startDate": "2022-04-01",
+        "endDate": "",
+        "description": "Developed autonomous navigation systems for industrial robots. Integrated AI algorithms for path planning."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "Autonomous Drone Project",
+        "projectUrl": "https://research.hiroshi.jp/drone",
+        "description": "Designed and programmed an autonomous drone for surveillance and data collection."
+      }
+    ],
+    "skills": [
+      {
+        "name": "React",
+        "rating": 3
+      },
+      {
+        "name": "Robotics",
+        "rating": 3
+      },
+      {
+        "name": "ROS",
+        "rating": 3
+      },
+      {
+        "name": "Teamwork",
+        "rating": 3
+      },
+      {
+        "name": "PHP",
+        "rating": 4
+      },
+      {
+        "name": "Networking",
+        "rating": 3
+      },
+      {
+        "name": "Microsoft Office",
+        "rating": 4
+      },
+      {
+        "name": "Java",
+        "rating": 4
+      },
+      {
+        "name": "AI",
+        "rating": 4
+      }
+    ],
+    "tags": [
+      "Engineer",
+      "AI",
+      "Robotics"
+    ],
+    "id": "8"
+  },
+  "9": {
+    "personalInfo": {
+      "fullName": "John Coder",
+      "email": "john@gmail.com",
+      "countryCode": "+91",
+      "phone": "9876543210",
+      "linkedin": "https://www.linkedin.com/in/johncoder",
+      "github": "https://github.com/johncoder",
+      "country": "India",
+      "city": "Bengaluru",
+      "summary": "Experienced software developer with a strong background in web technologies. I am passionate about creating efficient and scalable applications. Looking for new challenges in a dynamic environment.",
+      "rating": 4,
+      "profilePhotoOriginalUrl": "/images/9-original.jpg",
+      "profilePhotoCroppedUrl": "/images/9-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Engineering (BEng) Computer Science",
+        "institution": "IIT Delhi",
+        "startYear": "2015",
+        "endYear": "2019"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Senior Software Engineer",
+        "company": "Global Tech",
+        "startDate": "2019-07-01",
+        "endDate": "",
+        "description": "Led development teams for critical web applications. Mentored junior engineers and contributed to architectural decisions."
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "Internal CRM System",
+        "projectUrl": "https://internal-crm.example.com",
+        "description": "Developed and maintained a comprehensive CRM system used by over 500 employees."
+      }
+    ],
+    "skills": [
+      {
+        "name": "JavaScript",
+        "rating": 3
+      },
+      {
+        "name": "Node.js",
+        "rating": 3
+      }
+    ],
+    "tags": [
+      "Developer",
+      "Engineer",
+      "Leader"
+    ],
+    "id": "9"
+  },
+  "10": {
+    "personalInfo": {
+      "fullName": "Nomusa Zulu",
+      "email": "nomusa.zulu@gmail.com",
+      "countryCode": "+27",
+      "phone": "281982473",
+      "linkedin": "https://www.linkedin.com/in/nomusazulu",
+      "github": "https://github.com/nomusazulu",
+      "country": "South Africa",
+      "city": "Cape Town",
+      "summary": "Hi guys, I am from South Africa and an aspiring Python developer.",
+      "rating": 4,
+      "profilePhotoOriginalUrl": "/images/10-original.jpg",
+      "profilePhotoCroppedUrl": "/images/10-cropped.jpeg",
+      "youtube": ""
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science (BS) Computer Science",
+        "institution": "University of Cape Town",
+        "startYear": "2020",
+        "endYear": "2024"
+      }
+    ],
+    "experience": [],
+    "projects": [
+      {
+        "projectName": "Local Business Directory",
+        "projectUrl": "https://github.com/nomusazulu/local-directory",
+        "description": "Developed a web application to list local businesses and services."
+      }
+    ],
+    "skills": [
+      {
+        "name": "Adobe XD",
+        "rating": 3
+      },
+      {
+        "name": "AI",
+        "rating": 2
+      },
+      {
+        "name": "Content Strategy",
+        "rating": 4
+      }
+    ],
+    "tags": [
+      "Administrator",
+      "Developer",
+      "Student"
+    ],
+    "id": "10"
+  },
+  "11": {
+    "personalInfo": {
+      "fullName": "Sophie Nevin",
+      "email": "sophie.nevin@gmail.com",
+      "countryCode": "+61",
+      "phone": "234567888",
+      "linkedin": "https://www.linkedin.com/in/sophienevin",
+      "github": "",
+      "country": "Australia",
+      "city": "Sydney",
+      "summary": "An enthusiastic student currently pursuing a degree in business, with a keen interest in marketing.",
+      "rating": 4,
+      "profilePhotoOriginalUrl": "/images/11-original.jpg",
+      "profilePhotoCroppedUrl": "/images/11-cropped.jpeg"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Business Administration (BBA)",
+        "institution": "University of Sydney",
+        "startYear": "2022",
+        "endYear": "2025"
+      }
+    ],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      "Teamwork",
+      "Communication",
+      "Microsoft Office"
+    ],
+    "tags": [
+      "Student",
+      "Marketing"
+    ],
+    "id": "11"
+  },
+  "12": {
+    "personalInfo": {
+      "fullName": "Himanshu Jangid",
+      "email": "himanshulm9@gmail.com",
+      "countryCode": "+91",
+      "phone": "9950765675",
+      "linkedin": "",
+      "github": "",
+      "country": "India",
+      "city": "Jaipur",
+      "summary": "I'm a dedicated student and aspiring developer, always eager to learn and build new things.",
+      "rating": 5,
+      "profilePhotoOriginalUrl": "/images/12-original.jpg",
+      "profilePhotoCroppedUrl": "/images/12-cropped.jpeg"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Computer Applications (BCA)",
+        "institution": "Parishkar",
+        "startYear": "2023",
+        "endYear": "2026"
+      }
+    ],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "tags": [
+      "Student",
+      "Developer"
+    ],
+    "id": "12"
+  },
+  "13": {
+    "personalInfo": {
+      "fullName": "Himanshu Jangid",
+      "email": "himanshulm9@gmail.com",
+      "countryCode": "+91",
+      "phone": "9929875036",
+      "linkedin": "",
+      "github": "",
+      "country": "India",
+      "city": "Delhi",
+      "summary": "wjebcjcjbjh bwjhb wejh bwjhbwjhebwjebwjefnwfnwef",
+      "rating": 5,
+      "profilePhotoOriginalUrl": "/images/13-original.jpeg",
+      "profilePhotoCroppedUrl": "/images/13-cropped.jpeg"
+    },
+    "education": [],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      "Networking",
+      "Node.js",
+      "Machine Learning"
+    ],
+    "tags": [
+      "UI/UX",
+      "Student"
+    ],
+    "id": "13"
+  },
+  "14": {
+    "personalInfo": {
+      "fullName": "new user",
+      "email": "jhondoe@gmail.com",
+      "countryCode": "+1",
+      "phone": "7398573489",
+      "linkedin": "",
+      "github": "",
+      "country": "usa",
+      "city": "new york",
+      "summary": "hi guys this is user and i would love to work with u",
+      "rating": 5,
+      "profilePhotoOriginalUrl": "/images/14-original.jpeg",
+      "profilePhotoCroppedUrl": "/images/14-cropped.jpeg"
+    },
+    "education": [],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      "Adobe XD"
+    ],
+    "tags": [
+      "Analyst"
+    ],
+    "id": "14"
+  },
+  "15": {
+    "personalInfo": {
+      "fullName": "Rohit",
+      "email": "srohit1234567@gmail.com",
+      "countryCode": "+91",
+      "phone": "7878005656",
+      "linkedin": "",
+      "github": "",
+      "country": "india",
+      "city": "jaipur",
+      "summary": "asdfghjdfgh",
+      "rating": 5,
+      "profilePhotoOriginalUrl": null,
+      "profilePhotoCroppedUrl": null
+    },
+    "education": [
+      {
+        "degree": "MCA",
+        "institution": "JJTU",
+        "startYear": "2023",
+        "endYear": "2025"
+      }
+    ],
+    "experience": [
+      {
+        "jobTitle": "Frontend Dev",
+        "company": "RSS",
+        "startDate": "2025-08-15",
+        "endDate": "",
+        "description": "jkfbnfb"
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "kundanstone exports",
+        "projectUrl": "",
+        "description": "dfgh"
+      },
+      {
+        "projectName": "unikri",
+        "projectUrl": "",
+        "description": "wefgh"
+      }
+    ],
+    "skills": [
+      "html",
+      "css",
+      "JavaScript"
+    ],
+    "tags": [
+      "Administrator"
+    ],
+    "id": "15"
+  },
+  "16": {
+    "personalInfo": {
+      "fullName": "shreyansh",
+      "email": "soniyash867@gmail.com",
+      "countryCode": "+91",
+      "phone": "7014369678",
+      "linkedin": "https://www.linkedin.com/in/shreyansh-soni-185001352/",
+      "github": "https://github.com/EliteYashu",
+      "youtube": "https://youtu.be/i2u5Q7NMFGk",
+      "country": "India",
+      "city": "jaipur",
+      "summary": "ertykl",
+      "rating": 3,
+      "profilePhotoOriginalUrl": null,
+      "profilePhotoCroppedUrl": null
+    },
+    "education": [],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      {
+        "name": "python",
+        "rating": 0
+      }
+    ],
+    "tags": [
+      "ai"
+    ],
+    "id": "16"
+  },
+  "17": {
+    "personalInfo": {
+      "fullName": "shreyansh",
+      "email": "soniyash867@gmail.com",
+      "countryCode": "+91",
+      "phone": "7014369678",
+      "linkedin": "https://www.linkedin.com/in/shreyansh-soni-185001352/",
+      "github": "https://github.com/EliteYashu",
+      "youtube": "https://youtu.be/i2u5Q7NMFGk",
+      "country": "India",
+      "city": "jaipur",
+      "summary": "rihhsiuhgihegihehgehfiugher",
+      "rating": 3,
+      "profilePhotoOriginalUrl": "/images/17-original.png",
+      "profilePhotoCroppedUrl": "/images/17-cropped.jpeg"
+    },
+    "education": [],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      {
+        "name": "Agile",
+        "rating": 0
+      }
+    ],
+    "tags": [
+      "AI"
+    ],
+    "id": "17"
+  },
+  "18": {
+    "personalInfo": {
+      "fullName": "yashu",
+      "email": "soniyashu083@gmail.com",
+      "countryCode": "+91",
+      "phone": "7014369678",
+      "linkedin": "https://www.linkedin.com/in/shreyansh-soni-185001352/",
+      "github": "https://github.com/EliteYashu",
+      "youtube": "https://youtu.be/i2u5Q7NMFGk",
+      "country": "India",
+      "city": "jaipur",
+      "summary": "yuhgftyuhgtyuqwertyuiopppppppoiuytrewqasdfghjklllllllllllllllkjhgfddsssssssssszxcvbnfbeijhviohfgvjsncbuhsy8ywvwu9yusdhcksbhcgsd8ydcnmsbcghusdg8yfy wiihwdb iywrh9uwihwidchihwdgisdgcsknbcushcuihsb h inpiwhds clwidhisd hsdc uwbcvihsd nciwdhciusdhiwouwh cihwhciuwhiwchiwdh ijbchudgfiuyefuiusdhchksdgfiy",
+      "rating": 3,
+      "profilePhotoOriginalUrl": null,
+      "profilePhotoCroppedUrl": null
+    },
+    "education": [],
+    "experience": [],
+    "projects": [
+      {
+        "projectName": "whfgiewh",
+        "projectUrl": "",
+        "projectYoutubeUrl": "https://youtu.be/i2u5Q7NMFGk",
+        "description": "agjhgfdsdfguiuhgfdsdfghjkjhgfdfghjkjhgfddfghjkdfnjdjfodwfjdojfewjfjoiwjfiowj"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Agile",
+        "rating": 0
+      }
+    ],
+    "tags": [
+      "AI"
+    ],
+    "id": "18"
+  },
+  "19": {
+    "personalInfo": {
+      "fullName": "IRFAN Khan",
+      "email": "khanirfanpathan389@gmail.com",
+      "countryCode": "+91",
+      "phone": "7976832578",
+      "linkedin": "https://www.linkedin.com/in/irfan-khan-b042b7305/",
+      "github": "",
+      "youtube": "",
+      "country": "India",
+      "city": "Banswara",
+      "summary": "dsffvsdff",
+      "rating": 3,
+      "profilePhotoOriginalUrl": null,
+      "profilePhotoCroppedUrl": null
+    },
+    "education": [],
+    "experience": [],
+    "projects": [],
+    "skills": [
+      {
+        "name": "Adobe XD",
+        "rating": 0
+      }
+    ],
+    "tags": [
+      "AI"
+    ],
+    "id": "19"
+  }
+}

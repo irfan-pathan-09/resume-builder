@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Builder - Right Shift Solution</title>
+  <!-- Bootstrap & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <!-- Google Fonts: Inter for iOS feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Cropper.js for image editing -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+  <!-- Highlight.js for JSON syntax highlighting -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text-color: #1d1d1f;
+      --secondary-text-color: #6e6e73;
+      /* CHANGED: Primary color to Purple */
+      --primary-color: #6f42c1;
+      --border-color: #d2d2d7;
+      --input-bg: #f5f5f7;
+      --hover-color: #e5e5ea;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --backdrop-blur: blur(10px);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-color);
+      padding: 20px;
+    }
+
+    .main-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .form-column,
+    .preview-column {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .card-section {
+      background: var(--card-bg);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    /* --- Header Layout --- */
+    .header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      /* Allows wrapping on small screens */
+      gap: 15px;
+    }
+
+    .header-section h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin: 0;
+      text-align: center;
+      flex-grow: 1;
+      /* Allows title to take available space */
+    }
+
+    .company-logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      flex-shrink: 0;
+      /* Prevents logo from shrinking too much */
+      text-decoration: none;
+      /* Remove underline for link */
+      transition: opacity 0.2s ease;
+    }
+
+    .company-logo:hover {
+      opacity: 0.8;
+      color: var(--primary-color);
+    }
+
+    /* --- Public Showcase Button Styles (Robust Version) --- */
+    .public-showcase-btn {
+      background-color: #fff;
+      border: 1px solid var(--border-color);
+      color: var(--primary-color);
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+      white-space: nowrap;
+      /* Prevents button text from wrapping weirdly */
+      flex-shrink: 0;
+      /* Prevents button from getting squished */
+    }
+
+    .public-showcase-btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(111, 66, 193, 0.25);
+      /* Updated shadow color */
+    }
+
+    @media (max-width: 768px) {
+
+      /* On mobile, stack them nicely */
+      .header-section {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-section h1 {
+        order: 2;
+        /* Title second */
+        margin: 10px 0;
+      }
+
+      .company-logo {
+        order: 1;
+        /* Logo first */
+      }
+
+      .public-showcase-btn {
+        order: 3;
+        /* Button last */
+        width: 100%;
+        /* Full width button on mobile */
+        justify-content: center;
+      }
+    }
+
+    .form-control,
+    .form-select {
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 15px;
+      color: var(--text-color);
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background-color: #fff;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.2);
+      /* Updated shadow color */
+    }
+
+    .btn {
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .btn-outline-secondary {
+      border-color: var(--border-color);
+      color: var(--secondary-text-color);
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: var(--hover-color);
+      border-color: var(--border-color);
+      color: var(--text-color);
+    }
+
+    .collapsible-section summary {
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      list-style: none;
+    }
+
+    .collapsible-section summary::after {
+      content: '\F282';
+      /* Bootstrap icon chevron down */
+      font-family: 'bootstrap-icons';
+      transition: transform 0.2s ease;
+    }
+
+    .collapsible-section[open]>summary::after {
+      content: '\F286';
+      /* Bootstrap icon chevron up */
+      transform: rotate(180deg);
+    }
+
+    .collapsible-section .content {
+      padding-top: 15px;
+    }
+
+    /* Image Editor Styles */
+    .image-editor-container {
+      width: 100%;
+      height: 400px;
+      background-color: var(--input-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .image-editor-container img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .image-controls {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-controls .btn {
+      padding: 5px 10px;
+      font-size: 0.9rem;
+    }
+
+    /* JSON Viewer */
+    .json-output-section pre {
+      background-color: var(--input-bg);
+      border-radius: 12px;
+      padding: 15px;
+      max-height: 500px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .json-output-section code.json {
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    #jsonOutput,
+    #jsonOutput.hljs {
+      display: block;
+      white-space: pre-wrap !important;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(240, 242, 245, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1050;
+    }
+
+    /* MODIFIED: Ensure app-message is visible when 'show' class is present */
+    .app-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 300px;
+      z-index: 1100;
+      display: none;
+      /* Hidden by default */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .app-message.show {
+      display: block;
+      /* Make it block when 'show' is added */
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    /* Styles for the new tag/skill dropdowns */
+    .tag-input-container {
+      position: relative;
+    }
+
+    /* Custom Autocomplete Dropdown */
+    .custom-autocomplete-dropdown {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      max-height: 150px;
+      /* Small size for dropdown */
+      overflow-y: auto;
+      z-index: 1000;
+      width: calc(100% - 2px);
+      /* Match input width */
+      box-shadow: var(--shadow);
+      margin-top: 5px;
+      display: none;
+      /* Hidden by default */
+    }
+
+    .custom-autocomplete-dropdown.show {
+      display: block;
+    }
+
+    .custom-autocomplete-dropdown .dropdown-item {
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+
+    .custom-autocomplete-dropdown .dropdown-item:hover,
+    .custom-autocomplete-dropdown .dropdown-item.active {
+      background-color: var(--hover-color);
+      color: var(--primary-color);
+    }
+
+
+    .selected-container {
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 5px;
+      min-height: 40px;
+      background-color: var(--input-bg);
+    }
+
+    .selected-container .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4em 0.6em;
+      margin: 0.2em;
+      border-radius: 8px;
+    }
+
+    .selected-container .badge .btn-close {
+      margin-left: 0.5em;
+      font-size: 0.5em;
+    }
+
+    /* New style for skill badge to accommodate rating input */
+    .selected-skill-badge {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.4em 0.6em;
+      margin: 0.2em;
+      border-radius: 8px;
+    }
+
+    .selected-skill-badge .skill-rating-input {
+      width: 50px;
+      /* Adjust width as needed */
+      margin-left: 8px;
+      padding: 2px 5px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-align: center;
+    }
+
+    .selected-skill-badge .skill-rating-input:focus {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-color: white;
+      outline: none;
+    }
+
+    .input-group.is-invalid .form-control,
+    .input-group.is-invalid .input-group-text,
+    .input-group.is-invalid .form-select {
+      border-color: var(--bs-form-invalid-border-color) !important;
+    }
+
+    .input-group.is-invalid:focus-within .form-control,
+    .input-group.is-invalid:focus-within .input-group-text,
+    .input-group.is-invalid:focus-within .form-select {
+      box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+
+
+    @media (max-width: 1200px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-section">
+    <!-- CHANGED: Link added for Right Shift Solution -->
+    <a href="https://www.rightshiftsolutions.com" target="_blank" class="company-logo">Right Shift Solution</a>
+    <h1>Resume Builder</h1>
+    <!-- Public Showcase Button Moved Inside Header -->
+    <a href="public_resume_showcase.html" class="public-showcase-btn">
+      <i class="bi bi-globe"></i> <span>See Your Resume</span>
+    </a>
+  </div>
+
+  <div class="app-message alert alert-info text-center" role="alert" id="appMessage">
+    <span id="appMessageText"></span>
+  </div>
+
+  <div class="main-container">
+    <!-- FORM COLUMN -->
+    <div class="form-column">
+      <div class="card-section">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Load resume by ID" id="loadResumeIdInput" />
+          <button class="btn btn-outline-secondary" type="button" id="loadResumeByIdBtn">Load</button>
+        </div>
+      </div>
+
+      <form id="resumeForm" class="card-section">
+        <datalist id="allDegreesList"></datalist>
+
+        <!-- Personal Info -->
+        <details class="collapsible-section" open>
+          <summary>Personal Information</summary>
+          <div class="content row g-3">
+            <div class="col-md-6">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="e.g., John Doe" required>
+              <div class="invalid-feedback" id="fullName-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="emailPrefix" class="form-label">Email</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="emailPrefix" placeholder="e.g., johndoe" required />
+                <select class="form-select" id="emailDomainSelect"></select>
+                <div class="invalid-feedback" id="email-feedback"></div>
+              </div>
+            </div>
+            <div class="col-md-6 tag-input-container">
+              <label for="countryAndCode" class="form-label">Country & Phone Code</label>
+              <input type="text" class="form-control" id="countryAndCode" placeholder="Select or type country (+code)"
+                required />
+              <div id="countryAndCodeSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
+              <div class="invalid-feedback" id="countryAndCode-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="e.g., 9876543210" inputmode="numeric"
+                pattern="[0-9]*" />
+              <div class="invalid-feedback" id="phone-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="rating" class="form-label">Rating (0.0 - 5.0)</label>
+              <input type="number" class="form-control" id="rating" step="0.1" min="0" max="5" placeholder="e.g., 4.5"
+                required inputmode="numeric" pattern="[0-9]*[.]?[0-9]*" />
+              <div class="invalid-feedback" id="rating-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="linkedin" class="form-label">LinkedIn URL</label>
+              <input type="url" class="form-control" id="linkedin" placeholder="https://linkedin.com/in/johndoe" />
+              <div class="invalid-feedback" id="linkedin-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="github" class="form-label">GitHub URL</label>
+              <input type="url" class="form-control" id="github" placeholder="https://github.com/johndoe" />
+              <div class="invalid-feedback" id="github-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="youtube" class="form-label">YouTube URL</label>
+              <input type="url" class="form-control" id="youtube" placeholder="https://youtube.com/user/johndoe" />
+              <div class="invalid-feedback" id="youtube-feedback"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" placeholder="e.g., New York" required />
+              <div class="invalid-feedback" id="city-feedback"></div>
+            </div>
+            <div class="col-12">
+              <label for="summary" class="form-label">Summary</label>
+              <textarea class="form-control" id="summary" rows="3" maxlength="500"
+                placeholder="A brief professional summary..."></textarea>
+            </div>
+          </div>
+        </details>
+
+        <!-- Other sections... -->
+        <hr class="my-4">
+        <details class="collapsible-section">
+          <summary>Education</summary>
+          <div class="content">
+            <div id="educationContainer"></div>
+            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addEducation"><i
+                class="bi bi-plus"></i> Add Education</button>
+          </div>
+        </details>
+
+        <hr class="my-4">
+        <details class="collapsible-section">
+          <summary>Experience</summary>
+          <div class="content">
+            <div id="experienceContainer"></div>
+            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addExperience"><i
+                class="bi bi-plus"></i> Add Experience</button>
+          </div>
+        </details>
+
+        <hr class="my-4">
+        <details class="collapsible-section">
+          <summary>Projects</summary>
+          <div class="content">
+            <div id="projectsContainer"></div>
+            <button class="btn btn-sm btn-outline-secondary mt-2" type="button" id="addProject"><i
+                class="bi bi-plus"></i> Add Project</button>
+          </div>
+        </details>
+
+        <hr class="my-4">
+        <details class="collapsible-section" open>
+          <summary>Skills & Tags</summary>
+          <div class="content row g-3">
+            <div class="col-md-6 tag-input-container">
+              <label for="skillSearchInput" class="form-label">Skills</label>
+              <input type="text" class="form-control" id="skillSearchInput" placeholder="Type or select skills..." />
+              <div id="skillSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
+              <div class="invalid-feedback" id="skillSearchInput-feedback"></div>
+              <div class="selected-container mt-2" id="selectedSkillsContainer">
+                <!-- Skills with ratings will be injected here -->
+              </div>
+            </div>
+            <div class="col-md-6 tag-input-container">
+              <label for="tagSearchInput" class="form-label">Tags</label>
+              <input type="text" class="form-control" id="tagSearchInput" placeholder="Type or select tags..." />
+              <div id="tagSuggestionsDropdown" class="custom-autocomplete-dropdown"></div>
+              <div class="invalid-feedback" id="tagSearchInput-feedback"></div>
+              <div class="selected-container mt-2" id="selectedTagsContainer"></div>
+            </div>
+          </div>
+        </details>
+        <!-- Dynamic section fields for Education, Experience, and Projects also get inputmode="numeric" and pattern="[0-9]*" -->
+        <datalist id="allDegreesList"></datalist>
+      </form>
+    </div>
+
+    <!-- PREVIEW & IMAGE COLUMN -->
+    <div class="preview-column">
+      <!-- Image Editor -->
+      <div class="card-section">
+        <details class="collapsible-section" open>
+          <summary>Profile Photo</summary>
+          <div class="content position-relative">
+            <div class="image-editor-container">
+              <img id="image-editor-target" src="https://placehold.co/800x400/f5f5f7/6e6e73?text=Upload+Image"
+                alt="Profile image editor">
+            </div>
+            <div class="image-controls">
+              <label for="profilePictureInput" class="btn btn-light"><i class="bi bi-upload"></i></label>
+              <input type="file" id="profilePictureInput" accept="image/*" class="d-none">
+              <button class="btn btn-light" id="crop-square-btn" title="Crop Square"><i
+                  class="bi bi-square"></i></button>
+              <button class="btn btn-light" id="zoom-in-btn" title="Zoom In"><i class="bi bi-zoom-in"></i></button>
+              <button class="btn btn-light" id="zoom-out-btn" title="Zoom Out"><i class="bi bi-zoom-out"></i></button>
+              <button class="btn btn-light" id="zoom-reset-btn" title="Reset Zoom"><i class="bi bi-search"></i></button>
+              <button class="btn btn-danger" id="remove-image-btn" title="Remove Image"><i
+                  class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- JSON Viewer -->
+      <div class="card-section">
+        <details class="collapsible-section" open>
+          <summary>Live JSON Output</summary>
+          <div class="content json-output-section">
+            <pre><code id="jsonOutput" class="json">{ "message": "Form data will appear here live." }</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="card-section d-flex justify-content-end gap-2">
+        <button class="btn btn-outline-secondary" type="button" id="clearFormBtn">New</button>
+        <button class="btn btn-danger" type="button" id="deleteResumeBtn">Delete</button>
+        <button class="btn btn-primary" type="button" id="saveResumeBtn">Save/Update Resume</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-overlay" id="loadingIndicator">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+
+  <!-- Custom Confirmation Modal -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">\
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Confirm Action</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="confirmationModalBody">
+          Are you sure you want to proceed?\
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmActionBtn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+  <script src="admin_resume_builder.js"></script>
+</body>
+
+</html>

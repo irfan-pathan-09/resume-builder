@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Talent - Right Shift Solution</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Adjust card background to be more transparent for glass effect */
+            /* CHANGED: Reduced opacity to 0.1 for a clearer, less 'milky' glass effect */
+            --card-bg: rgba(255, 255, 255, 0.1);
+            /* More transparent white */
+            --text-color: #ffffff;
+            /* White text for better contrast on background image */
+            --secondary-text-color: #e0e0e0;
+            /* Lighter secondary text */
+            /* CHANGED: Reverted Primary color to Blue */
+            --primary-color: #007aff;
+            --border-color: rgba(255, 255, 255, 0.3);
+            /* Lighter border for glass effect */
+            --shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            /* Slightly stronger shadow */
+            --backdrop-blur-amount: blur(15px);
+            /* Increased blur for stronger glass effect */
+        }
+
+        body {
+            /* Remove video background styles and add image background styles */
+            background-image: url('2nd.jpg');
+            /* Placeholder image for now */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            /* Apply global text color for readability */
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Overlay for better text readability over dynamic backgrounds */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Slightly darker overlay for better contrast */
+            z-index: -99;
+        }
+
+        /* Video background element and its styles are removed */
+
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-section .company-name {
+            /* Enhanced styling for the company name */
+            font-size: 1.8rem;
+            /* Larger font size */
+            font-weight: 700;
+            /* Bolder */
+            color: var(--primary-color);
+            /* Keep primary color, but now more prominent */
+            margin-bottom: 0.8rem;
+            /* More space below it */
+            letter-spacing: 0.1em;
+            /* Add some letter spacing */
+            text-transform: uppercase;
+            /* Make it uppercase for a more distinct look */
+            /* Updated shadow color to match Blue */
+            text-shadow: 0 0 10px rgba(0, 122, 255, 0.7),
+                /* Subtle glow effect */
+                0 0 20px rgba(0, 122, 255, 0.4);
+            transition: all 0.3s ease-in-out;
+            /* Smooth transition for potential hover effects */
+            text-decoration: none;
+            /* No underline */
+            display: inline-block;
+            /* Allow transform */
+        }
+
+        .header-section .company-name:hover {
+            transform: scale(1.02);
+            /* Slight scale on hover */
+            color: #fff;
+            /* White on hover for contrast */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                /* Brighter glow on hover */
+                0 0 25px rgba(255, 255, 255, 0.5);
+        }
+
+        .header-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .search-filters-section {
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+        }
+
+        .form-control,
+        .form-select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        .form-control::placeholder,
+        .form-select option {
+            color: var(--secondary-text-color);
+        }
+
+        .form-select option {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 122, 255, 0.25);
+            /* Blue shadow */
+            color: var(--text-color);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        }
+
+
+        #searchResultsContainer {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            /* Removed align-items: stretch to allow dynamic height */
+        }
+
+        @media (min-width: 768px) {
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+        }
+
+        @media (min-width: 1140px) and (max-width: 1199.98px) {
+            #searchResultsContainer {
+                gap: 20px;
+            }
+
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .resume-card .card-summary {
+                padding: 20px;
+                gap: 16px;
+            }
+
+            .search-filters-section .row {
+                row-gap: 12px;
+            }
+        }
+
+        #searchResultsContainer.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        #searchResultsContainer.list-view .resume-card {
+            flex-direction: row;
+            text-align: left;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            /* height will be dynamic based on content */
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-summary {
+            flex-direction: row;
+            text-align: left;
+            align-items: center;
+            gap: 20px;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        #searchResultsContainer.list-view .resume-card .profile-photo {
+            width: 60px;
+            height: 60px;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: auto;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .name {
+            font-size: 1.3rem;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .qualification {
+            font-size: 0.9rem;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .rating {
+            justify-content: flex-start;
+            margin-top: 5px;
+        }
+
+        #searchResultsContainer.list-view .resume-card .card-info .skills,
+        #searchResultsContainer.list-view .resume-card .card-info .tags {
+            display: none;
+        }
+
+        .resume-card {
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            /* Removed fixed height, cards will now auto-adjust */
+            overflow: visible;
+            /* Ensure content is not clipped */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+            display: flex;
+            /* Maintain flex for internal layout */
+            flex-direction: column;
+            /* Stack content vertically */
+        }
+
+        .resume-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .resume-card.expanded {
+            grid-column: 1 / -1;
+            /* Makes the expanded card span all columns */
+            height: auto;
+            /* Allow expanded card to take full height to show details */
+            overflow: visible;
+            /* Allow content to be fully visible when expanded */
+        }
+
+
+        .resume-card .card-summary {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            /* Removed flex-grow: 1; */
+            justify-content: flex-start;
+            overflow: visible;
+            /* Ensure content is not clipped or scrolled */
+            /* Removed flex-shrink: 0 and max-height: 100% */
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-summary {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+
+        .resume-card .profile-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .resume-card .card-info {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-info {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+            }
+
+            .resume-card .card-info .name,
+            .resume-card .card-info .qualification {
+                grid-column: 1 / 3;
+            }
+        }
+
+        .resume-card .card-info .name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .resume-card .card-info .qualification {
+            color: var(--secondary-text-color);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .resume-card .card-info .rating {
+            margin-top: 0;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .resume-card .card-info .rating {
+                justify-content: flex-start;
+            }
+        }
+
+        .resume-card .card-info .rating i {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+
+        .resume-card.expanded .card-details .text-muted,
+        .resume-card .card-summary .rating .text-muted {
+            color: #ADD8E6 !important;
+        }
+
+        /* --- Updated Link Styling for Visibility (Yellow, No Underline) --- */
+        .resume-card .card-details a,
+        .resume-card .card-details .text-muted {
+            /* CHANGED: Yellow for high contrast on dark glass */
+            color: #ffeb3b !important;
+            text-decoration: none !important;
+            /* No underline */
+            font-size: 1.25rem;
+            /* Bigger text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .resume-card .card-details a:hover {
+            color: #fff176 !important;
+            /* Lighter yellow on hover */
+        }
+
+
+        .resume-card .card-info .skills .badge.skill-badge-with-rating,
+        .resume-card .card-details .row .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 0.4em 0.6em;
+            margin: 0.2em;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .resume-card .card-info .skills .badge.skill-badge-with-rating i,
+        .resume-card .card-details .row .badge i {
+            font-size: 0.8em;
+            color: #FFD700;
+            line-height: 1;
+        }
+
+
+        .resume-card .card-info .tags .badge {
+            font-size: 0.85rem;
+            background-color: rgba(0, 122, 255, 0.3);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+        }
+
+
+        .resume-card .card-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            /* Added background to prevent grey flash */
+            /* CHANGED: Reverted to simple glass background (removed solid white) */
+            background: var(--card-bg);
+            backdrop-filter: var(--backdrop-blur-amount);
+            -webkit-backdrop-filter: var(--backdrop-blur-amount);
+            /* Adjusted transition for a snappier feel from 0.5s to 0.2s */
+            transition: max-height 0.2s ease-out, opacity 0.2s ease-out, padding 0.2s ease-out;
+            color: var(--text-color);
+        }
+
+        .resume-card.expanded .card-details {
+            max-height: 1000px;
+            /* Adjust if content can be taller */
+            opacity: 1;
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .full-image-view {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .app-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 300px;
+            z-index: 1100;
+            /* Ensure this is high */
+            display: none;
+            opacity: 0;
+            /* Hidden by default for smooth transition */
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .app-message.show {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1050;
+        }
+
+        .loading-overlay .spinner-border {
+            color: var(--primary-color) !important;
+        }
+
+        /* --- Responsive adjustments for search filters --- */
+        .search-filters-section .row {
+            align-items: center;
+            /* Align items vertically in the center */
+        }
+
+        .search-filters-section .row>div {
+            margin-bottom: 10px;
+            /* Add some vertical spacing for stacking */
+        }
+
+        @media (min-width: 768px) {
+            .search-filters-section .row>div {
+                margin-bottom: 0;
+                /* Remove vertical spacing on medium and larger screens */
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023.98px) {
+            .header-section h1 {
+                font-size: 2.4rem;
+            }
+
+            .search-filters-section {
+                padding: 20px;
+            }
+
+            .search-filters-section .row {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .search-filters-section .row .col-12.col-md-auto {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 0;
+            }
+
+            .search-filters-section .row .btn {
+                width: 100%;
+            }
+
+            .search-filters-section .d-flex.flex-column.flex-md-row {
+                flex-wrap: wrap;
+                justify-content: space-between !important;
+                gap: 12px !important;
+            }
+
+            #searchResultsContainer {
+                gap: 18px;
+            }
+
+            #searchResultsContainer.cards-view {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .resume-card .card-summary {
+                padding: 18px;
+                gap: 12px;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .resume-card .card-info {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-card .card-info .name,
+            .resume-card .card-info .qualification {
+                grid-column: auto;
+            }
+
+            .resume-card .card-info .rating {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+
+            /* For small screens, ensure inputs stack well */
+            .search-filters-section .row .col-12.col-md-auto {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .search-filters-section .row .btn {
+                width: 100%;
+            }
+
+            .search-filters-section .d-flex.flex-column.flex-md-row {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+
+            .search-filters-section .d-flex.align-items-center.gap-2 {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .switch-button-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        .switch-button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .switch-button {
+            position: relative;
+            display: inline-block;
+            width: 90px;
+            height: 34px;
+        }
+
+        .switch-button input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(56px);
+            -ms-transform: translateX(56px);
+            transform: translateX(56px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .view-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+            padding: 0 5px;
+        }
+
+        .view-label.active-view {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Custom styles for the 'All' button - Enhanced */
+        #showAllBtn {
+            background-color: #007bff;
+            /* Bootstrap primary blue */
+            border-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+            /* Soft shadow */
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #showAllBtn:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            /* Slight lift */
+            box-shadow: 0 6px 10px rgba(0, 123, 255, 0.4);
+            /* Enhanced shadow */
+        }
+
+        #showAllBtn i {
+            margin-right: 5px;
+            /* Space for icon if added */
+        }
+
+        /* Custom styles for the 'Clear' button */
+        #clearBtn {
+            background-color: #ffc107;
+            /* Yellow/Orange background */
+            border-color: #ffc107;
+            /* Yellow/Orange border */
+            color: #343a40;
+            /* Dark text for contrast */
+        }
+
+        #clearBtn:hover {
+            background-color: #e0a800;
+            /* Darker yellow/orange on hover */
+            border-color: #d39e00;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NO Admin Button Here as requested -->
+
+    <div class="main-container">
+        <div class="header-section">
+            <!-- CHANGED: Link added for Right Shift Solution -->
+            <a href="https://www.rightshiftsolutions.com" target="_blank" class="company-name">Parishkar College</a>
+            <h1>Top Talent</h1>
+        </div>
+
+        <div id="appMessage" class="app-message alert alert-danger text-center" role="alert"></div>
+
+        <div class="search-filters-section">
+            <div class="row g-3">
+                <!-- Inputs and selects now use col-12 for full width on extra small to small screens
+                     and col-md-auto for automatic sizing on medium and larger screens.
+                     This makes them stack vertically on small screens and align horizontally on larger ones. -->
+                <div class="col-12 col-md-auto"><input type="text" class="form-control" id="searchByName"
+                        placeholder="Search by Name..."></div>
+                <div class="col-12 col-md-auto"><input type="text" class="form-control" id="searchByCity"
+                        placeholder="Search by City..."></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchBySkill">
+                        <option value="">All Skills</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchByTag">
+                        <option value="">All Tags</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><select class="form-select" id="searchByDegree">
+                        <option value="">All Degrees</option>
+                    </select></div>
+                <div class="col-12 col-md-auto"><button class="btn btn-primary w-100" id="searchBtn">Filter</button>
+                </div>
+                <div class="col-12 col-md-auto"><button class="btn btn-outline-secondary w-100"
+                        id="clearBtn">Clear</button></div>
+            </div>
+            <hr class="my-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <div id="resultsCountDisplay" class="text-muted"></div>
+                <div class="d-flex align-items-center gap-2">
+                    <span>Show:</span>
+                    <input type="number" class="form-control form-control-sm" id="limitInput" min="1" max="300"
+                        value="9" style="width: 80px;">
+                    <button class="btn btn-sm" id="showAllBtn"><i class="bi bi-infinity"></i> All</button>
+                </div>
+                <div class="switch-button-container">
+                    <span id="cardsViewLabel" class="view-label active-view">Cards View</span>
+                    <label class="switch-button">
+                        <input type="checkbox" id="viewToggleSwitch" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="listViewLabel" class="view-label">List View</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="searchResultsContainer" class="cards-view">
+            <!-- Resume cards will be injected here -->
+        </div>
+
+        <div class="text-center p-4 text-muted" id="initialMessage">Use filters to find talent.</div>
+    </div>
+
+    <div class="loading-overlay" id="loadingIndicator">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
+    <!-- jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="public_resume_showcase.js"></script>
+</body>
+
+</html>
