@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Globals & State ---
-    const API_BASE_URL = window.location.origin;
+    const APP_BASE_PATH = window.location.pathname.includes('/public/')
+        ? window.location.pathname.split('/public/')[0]
+        : '';
+    const API_BASE_URL = `${window.location.origin}${APP_BASE_PATH}`;
+    const toAppUrl = (url = '') => {
+        if (!url || typeof url !== 'string') return '';
+        if (url.startsWith('data:image')) return url;
+        if (/^https?:\/\//i.test(url)) return url;
+        if (url.startsWith('/')) return `${APP_BASE_PATH}${url}`;
+        return url;
+    };
     let allResumes = []; // Stores all fetched resumes
     let currentlyExpandedCard = null; // Tracks the currently expanded resume card
     let originalCardDetailsContent = {}; // Store original HTML content for each card ID
@@ -183,8 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.id = resume.id;
 
         const { personalInfo, education, skills, tags } = resume;
-        // Use profilePhotoCroppedUrl for the summary card, prepend API_BASE_URL
-       const profilePhotoUrl = personalInfo.profilePhotoCroppedUrl ? personalInfo.profilePhotoCroppedUrl : '';
+        const profilePhotoUrl = personalInfo.profilePhotoCroppedUrl
+            ? toAppUrl(personalInfo.profilePhotoCroppedUrl)
+            : '';
         const degree = education.length > 0 ? education[0].degree : 'N/A';
 
         // Display skills with their ratings

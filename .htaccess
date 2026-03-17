@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# Serve real files/directories directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Public routes
+RewriteRule ^$ public/index.html [L]
+RewriteRule ^showcase/?$ public/index.html [L]
+RewriteRule ^admin/?$ public/admin.html [L]
+
+# Static assets referenced from HTML
+RewriteRule ^admin_resume_builder\.js$ public/admin_resume_builder.js [L]
+RewriteRule ^resume_showcase\.js$ public/resume_showcase.js [L]
+RewriteRule ^2nd\.jpg$ public/2nd.jpg [L]
+
+# PHP API routes (Hostinger/FileZilla deployment)
+RewriteRule ^api/resumes/?$ api/resumes/index.php [L,QSA]
+RewriteRule ^api/resumes/([^/]+)/?$ api/resumes/id.php?id=$1 [L,QSA]
+RewriteRule ^api/metadata/([^/]+)/?$ api/metadata/index.php?type=$1 [L,QSA]

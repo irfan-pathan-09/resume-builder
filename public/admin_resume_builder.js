@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Globals & State ---
-    const API_BASE_URL = `${window.location.origin}`;
+    const APP_BASE_PATH = window.location.pathname.includes('/public/')
+        ? window.location.pathname.split('/public/')[0]
+        : '';
+    const API_BASE_URL = `${window.location.origin}${APP_BASE_PATH}`;
     const ADMIN_API_KEY = 'your_secret_admin_key'; // Replace with your actual admin key
     let currentResumeId = null;
     let cropper = null;

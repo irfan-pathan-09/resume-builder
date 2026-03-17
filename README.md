@@ -1,4 +1,4 @@
-# Resume Builder (Vercel Ready)
+# Resume Builder (Vercel + Hostinger Ready)
 
 ## Routes
 - `/` -> Public resume showcase (landing page)
@@ -23,6 +23,20 @@
    - `ADMIN_API_KEY=your_secret_admin_key`
 4. Deploy.
 
+## Hostinger/FileZilla Deployment (Apache + PHP)
+1. Open Hostinger File Manager or FileZilla.
+2. Upload this full project to `public_html` (or your domain root), including:
+   - `.htaccess`
+   - `api/`
+   - `public/`
+   - `db.json`
+3. Ensure PHP is enabled (default on Hostinger shared hosting).
+4. Set `db.json` writable permissions (typically `664` or `666` if needed).
+5. Open your domain:
+   - `/` -> public landing page
+   - `/admin` -> admin builder
+
 ## Notes
 - This project now uses Vercel Serverless Functions in `/api`.
-- Runtime data is initialized from `db.json` and stored in serverless temp storage during execution.
+- For Vercel, runtime data is initialized from `db.json` and stored in serverless temp storage during execution.
+- For Hostinger, API is handled by PHP files under `api/` and writes directly to `db.json`.
