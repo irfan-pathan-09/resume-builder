@@ -37,6 +37,7 @@
    - `/admin` -> admin builder
 
 ## Notes
+- this is for only testing purposes
 - This project now uses Vercel Serverless Functions in `/api`.
 - For Vercel, runtime data is initialized from `db.json` and stored in serverless temp storage during execution.
 - For Hostinger, API is handled by PHP files under `api/` and writes directly to `db.json`.
